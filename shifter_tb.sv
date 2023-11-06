@@ -1,4 +1,4 @@
-module shifter();
+module shifter_tb();
     reg [15:0] in; 
     reg [1:0] shift; 
     wire [15:0] sout; 
@@ -87,5 +87,8 @@ module shifter();
         in = 16'b1111111100000001; //when in is inputted, the output should have all the digits shifted right and MSB = copy of in[15]
         #5; //wait for 5 seconds
         my_checker(16'b1111111110000000); //Checks if the corresponding output matches
+
+        if(~err) $display("PASSED"); 
+        else $display("FAILED");
     end
-endmodule 
+endmodule: shifter_tb //CHECK WAVEFORM AND SEE IF NEED TO ADD $stop 

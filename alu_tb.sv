@@ -143,6 +143,9 @@ module alu_tb();
         #5;
         my_checker(16'd0, 2'b11, 1'b1);
 
+        if(~err) $display("PASSED"); 
+        else $display("FAILED");
+
     end
 
-endmodule
+endmodule: alu_tb

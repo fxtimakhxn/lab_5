@@ -9,7 +9,7 @@ module ALU(Ain,Bin,ALUop,out,Z);
         // depending on ALUop, out gets the result of a certain operation 
         case(ALUop)
             2'b00: out = Ain + Bin; //addition
-            2'b01: out = Ain -Bin; //subtraction
+            2'b01: out = Ain - Bin; //subtraction
             2'b10: out = Ain & Bin;   //AND
             2'b11: out = ~Bin;        //NOT
             default: out = 16'bxxxxxxxxxxxxxxxx;

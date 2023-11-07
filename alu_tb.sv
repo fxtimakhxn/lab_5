@@ -5,7 +5,7 @@ module alu_tb();
     wire Z;
     reg err;
 
-    alu dut(Ain,Bin,ALUop,out,Z); // instantiate an instance of alu
+    ALU dut(Ain,Bin,ALUop,out,Z); // instantiate an instance of alu
 
     task my_checker;
         input [15:0] expected_output;
@@ -28,44 +28,44 @@ module alu_tb();
         err = 1'b0; 
         Ain = 16'd0;
         Bin = 16'd0;
-        #5;
+        #10;
 
         // testing addition
         $display("Testing addition!!");
         ALUop = 2'b00;
         // A + B = out
         // 0 + 0 = 0
-        #5;
+        #10;
         my_checker(16'd0, 2'b00, 1'b1); 
 
         // 1 + 2 = 3
         Ain = 16'd1;
         Bin = 16'd2;
-        #5;
+        #10;
         my_checker(16'd3, 2'b00, 1'b0);
 
         // 17 + 29 = 46
         Ain = 16'd17;
         Bin = 16'd29;
-        #5;
+        #10;
         my_checker(16'd46, 2'b00, 1'b0);
 
         // 77 + 66 = 143
         Ain = 16'd77;
         Bin = 16'd66;
-        #5;
+        #10;
         my_checker(16'd143, 2'b00, 1'b0);
 
         // 538 + 771
         Ain = 16'd538;
         Bin = 16'd771;
-        #5;
+        #10;
         my_checker(16'd1309, 2'b00, 1'b0);
 
         // 4987 + 27 777
         Ain = 16'd4987;
         Bin = 16'd27777;
-        #5; 
+        #10; 
         my_checker(16'd32764, 2'b00, 1'b0);
 
         //testing subtraction
@@ -77,25 +77,25 @@ module alu_tb();
         // 0 - 0
         Ain = 16'd0;
         Bin = 16'd0;
-        #5;
+        #10;
         my_checker(16'd0, 2'b01, 1'b1);
 
         // 5 - 2
         Ain = 16'd5;
         Bin = 16'd2;
-        #5;
-        my_checker(16'd2, 2'b01, 1'b0);
+        #10;
+        my_checker(16'd3, 2'b01, 1'b0);
 
         // 53 - 27
         Ain = 16'd53;
         Bin = 16'd27;
-        #5;
+        #10;
         my_checker(16'd26, 2'b01, 1'b0);
 
         //3876 - 1212
         Ain = 16'd3876;
         Bin = 16'd1212;
-        #5;
+        #10;
         my_checker(16'd2664, 2'b01, 1'b0);
 
         // Testing AND
@@ -107,19 +107,19 @@ module alu_tb();
         // 0 & 0
         Ain = 16'd0;
         Bin = 16'd0;
-        #5;
+        #10;
         my_checker(16'd0, 2'b10, 1'b1);
 
         // 0 & 1
         Ain = 16'd0;
         Bin = 16'b1111111111111111;
-        #5;
+        #10;
         my_checker(16'd0, 2'b10, 1'b1);
 
         // 1 & 1
         Ain = 16'b1111111111111111;
         Bin = 16'b1111111111111111;
-        #5;
+        #10;
         my_checker(16'b1111111111111111, 2'b10, 1'b0);
 
         // Testing NOT 
@@ -130,22 +130,19 @@ module alu_tb();
 
         // ~0
         Bin = 16'd0;
-        #5;
+        #10;
         my_checker(16'b1111111111111111, 2'b11, 1'b0);
 
         // ~0010000000000000
         Bin = 16'b0010000000000000;
-        #5;
+        #10;
         my_checker(16'b1101111111111111, 2'b11, 1'b0);
 
         // ~1
         Bin = 16'b1111111111111111;
-        #5;
+        #10;
         my_checker(16'd0, 2'b11, 1'b1);
-
-        if(~err) $display("PASSED"); 
-        else $display("FAILED");
 
     end
 
-endmodule: alu_tb
+endmodule

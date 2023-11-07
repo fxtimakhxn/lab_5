@@ -4,7 +4,7 @@ module regfile(data_in,writenum,write,readnum,clk,data_out);
   input write, clk;
   output [15:0] data_out;
  
-  wire reg [7:0] writenum_dec, readnum_dec; //8 bit hot code from the decoder
+  wire [7:0] writenum_dec, readnum_dec; //8 bit hot code from the decoder
   wire load0, load1, load2, load3, load4, load5, load6, load7; //the different loads into the load enable 
   wire [15:0] R0, R1, R2, R3, R4, R5, R6, R7; //registers 0-7
 

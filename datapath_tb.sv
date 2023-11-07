@@ -17,6 +17,7 @@ module datapath_tb();
     vsel = 1;
     datapath_in = 16'd202;
     
+    #10
     if(dut.data_in !== 16'd202) begin
         $display("ERROR! Output is %d. Expected: 202", dut.data_in);
         err = 1;
@@ -24,6 +25,8 @@ module datapath_tb();
 
     write = 1;
     writenum = 3'd2; //want to write into register 2
+    
+    #10
     if(dut.data_out !== 16'd202) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 202", dut.data_out);
         err = 1;
@@ -40,11 +43,13 @@ module datapath_tb();
     loada = 0; //completed load A
 
     asel = 0;
+    #10
     if(dut.Ain !== 16'd202) begin // if Ain == data_out
         $display("ERROR! Output is %d. Expected: 202", dut.Ain);
         err = 1;
     end
     datapath_in = 16'd51; // new value for B
+    #10
     //mux #9
     if(dut.data_in !== 16'd51) begin // if data_in == datapath_in
         $display("ERROR! Output is %d. Expected: 202", dut.data_out);
@@ -52,6 +57,7 @@ module datapath_tb();
     end
 
     writenum = 3'd4; //write into register 4
+    #10
     if(dut.data_out !== 16'd51) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 51", dut.data_out);
         err = 1;
@@ -68,20 +74,21 @@ module datapath_tb();
     loadb = 0; // complete loadb
 
     shift = 2'b11; //shift right, MSB = B[15]
-    
+    #10
     if(dut.sout !== 16'b0000000000011001) begin // if sout != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000011001", dut.sout);
         err = 1;
     end
 
     bsel = 1; //Bin == 0000000000011001
-
+    #10
     if(dut.Bin !== 16'b0000000000000110) begin // if Bin != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000011001", dut.Bin);
         err = 1;
     end
 
     ALUop = 2'b01; // Subtraction
+    #10
     if(dut.out !== 16'b0000000010111000) begin //if out != Ain - Bin 
         $display("ERROR! Output is %b. Expected: 0000000010111000", dut.out);
         err = 1;
@@ -108,7 +115,7 @@ module datapath_tb();
     err = 0;
     vsel = 1;
     datapath_in = 16'd2;
-
+    #10
     if(dut.data_in !== 16'd2) begin
         $display("ERROR! Output is %d. Expected: 2", dut.data_in);
         err = 1;
@@ -116,7 +123,7 @@ module datapath_tb();
 
     write = 1;
     writenum = 3'd1; //want to write into register 1
-
+    #10
     if(dut.data_out !== 16'd2) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 2", dut.data_out);
         err = 1;
@@ -134,7 +141,7 @@ module datapath_tb();
     loada = 0; //completed load A
 
     asel = 0;
-    
+    #10
     if(dut.Ain !== 16'd2) begin // if Ain == data_out
         $display("ERROR! Output is %d. Expected: 2", dut.Ain);
         err = 1;
@@ -142,14 +149,14 @@ module datapath_tb();
 
     datapath_in = 16'd7; // value for B
     //mux #9
-    
+    #10
     if(dut.data_in !== 16'd7) begin // if data_in == datapath_in
         $display("ERROR! Output is %d. Expected: 7", dut.data_out);
         err = 1;
     end
 
     writenum = 3'd0; //write into register 0
-    
+    #10
     if(dut.data_out !== 16'd7) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 7", dut.data_out);
         err = 1;
@@ -164,21 +171,21 @@ module datapath_tb();
     end
 
     shift = 2'b01; //shift left, LSB = 0
-
+    #10
     if(dut.sout !== 16'b0000000000001110) begin // if sout != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000001110", dut.sout);
         err = 1;
     end
 
     bsel = 1; //Bin == 0000000000001110
-    
+    #10
     if(dut.Bin !== 16'b0000000000001110) begin // if Bin != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000001110", dut.Bin);
         err = 1;
     end
 
     ALUop = 2'b00; //addition
-    
+    #10
     if(dut.out !== 16'b0000000000010000) begin //if out != Ain + Bin (16)
         $display("ERROR! Output is %b. Expected: 0000000010111000", dut.out);
         err = 1;
@@ -204,7 +211,7 @@ module datapath_tb();
     err = 0;
     vsel = 1;
     datapath_in = 16'd6;
-
+    #10
     if(dut.data_in !== 16'd6) begin
         $display("ERROR! Output is %d. Expected: 2", dut.data_in);
         err = 1;
@@ -212,7 +219,7 @@ module datapath_tb();
 
     write = 1;
     writenum = 3'd5; //want to write into register 5
-
+    #10
     if(dut.data_out !== 16'd6) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 2", dut.data_out);
         err = 1;
@@ -229,7 +236,7 @@ module datapath_tb();
 
     loada = 0; //completed load A
     asel = 0;
-
+    #10
     if(dut.Ain !== 16'd6) begin // if Ain == data_out
         $display("ERROR! Output is %d. Expected: 2", dut.Ain);
         err = 1;
@@ -237,14 +244,14 @@ module datapath_tb();
 
     datapath_in = 16'd3; // value for B
     //mux #9
-
+    #10
     if(dut.data_in !== 16'd3) begin // if data_in == datapath_in
         $display("ERROR! Output is %d. Expected: 7", dut.data_out);
         err = 1;
     end
 
     writenum = 3'd7; //write into register 7
-
+    #10
     if(dut.data_out !== 16'd3) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 7", dut.data_out);
         err = 1;
@@ -259,21 +266,21 @@ module datapath_tb();
     end
 
     shift = 2'b10; //shift right, MSD = 0
-
+    #10
     if(dut.sout !== 16'b0000000000000001) begin // if sout != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000001110", dut.sout);
         err = 1;
     end
 
     bsel = 1; //Bin == b0000000000000001
-
+    #10
     if(dut.Bin !== 16'b0000000000000001) begin // if Bin != shifted B value
         $display("ERROR! Output is %b. Expected: 0000000000000001", dut.Bin);
         err = 1;
     end
 
     ALUop = 2'b10; //AND
-    
+    #10
     if(dut.out !== 16'b0000000000000000) begin //if out != Ain && Bin (0)
         $display("ERROR! Output is %b. Expected: 0000000000000000", dut.out);
         err = 1;

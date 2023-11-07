@@ -1,7 +1,7 @@
 module regfile_tb();
     reg [15:0] data_in; 
     reg [2:0] writenum,readnum; 
-    reg write, clk 
+    reg write, clk; 
     wire [15:0] data_out; 
     reg err; 
 
@@ -10,9 +10,10 @@ module regfile_tb();
     task my_checker;
         input [15:0] expected_data_out; 
         begin 
-            if(dut.data_out !== expected_data_out);
+            if(dut.data_out !== expected_data_out) begin 
                 $display("ERRORR ** output is %b, expected %b", dut.data_out, expected_data_out);
                 err = 1'b1; 
+        end 
         end 
     endtask;
 
@@ -37,7 +38,7 @@ module regfile_tb();
         data_in = 16'd512; 
         writenum = 3'd0; 
         readnum = 3'd0; 
-        #5 
+        #10
         my_checker(16'd512); //output should match data_in stored in R0
 
         //testing when write = 0
@@ -49,7 +50,7 @@ module regfile_tb();
         data_in = 16'd698; 
         writenum = 3'd0; 
         readnum = 3'd0; 
-        #5 
+        #10
         my_checker(16'd512); //output should keep the inital data_in value from above test stored in R0
 
         write = 1'b1;
@@ -59,7 +60,7 @@ module regfile_tb();
         data_in = 16'd1020; 
         writenum = 3'd1; 
         readnum = 3'd1; 
-        #5 
+        #10
         my_checker(16'd1020); //output should match data_in stored in R1
 
         write = 1'b0;
@@ -69,7 +70,7 @@ module regfile_tb();
         data_in = 16'd1000; 
         writenum = 3'd1; 
         readnum = 3'd1; 
-        #5 
+        #10
         my_checker(16'd1020); //output should keep the inital data_in value from above test stored in R1
 
         write = 1'b1; 
@@ -79,7 +80,7 @@ module regfile_tb();
         data_in = 16'd38; 
         writenum = 3'd2; 
         readnum = 3'd2; 
-        #5 
+        #10
         my_checker(16'd38); //output should match data_in stored in R2
 
         write = 1'b0;
@@ -89,7 +90,7 @@ module regfile_tb();
         data_in = 16'd8; 
         writenum = 3'd2; 
         readnum = 3'd2; 
-        #5 
+        #10
         my_checker(16'd38); //output should keep the inital data_in value from above test stored in R2
 
         write = 1'b1;
@@ -99,7 +100,7 @@ module regfile_tb();
         data_in = 16'd85; 
         writenum = 3'd3; 
         readnum = 3'd3; 
-        #5 
+        #10
         my_checker(16'd85); //output should match data_in stored in R3
 
         write = 1'b0;
@@ -109,7 +110,7 @@ module regfile_tb();
         data_in = 16'd97; 
         writenum = 3'd3; 
         readnum = 3'd3; 
-        #5 
+        #10
         my_checker(16'd85); //output should keep the inital data_in value from above test stored in R3
 
         write = 1'b1;
@@ -119,7 +120,7 @@ module regfile_tb();
         data_in = 16'd2345; 
         writenum = 3'd4; 
         readnum = 3'd4; 
-        #5 
+        #10
         my_checker(16'd2345); //output should match data_in stored in R4
 
         write = 1'b0;
@@ -129,7 +130,7 @@ module regfile_tb();
         data_in = 16'd786; 
         writenum = 3'd4; 
         readnum = 3'd4; 
-        #5 
+        #10
         my_checker(16'd2345); //output should keep the inital data_in value from above test stored in R4
 
         write = 1'b1;
@@ -139,7 +140,7 @@ module regfile_tb();
         data_in = 16'd1100; 
         writenum = 3'd5; 
         readnum = 3'd5; 
-        #5 
+        #10
         my_checker(16'd1100); //output should match data_in stored in R5
 
         write = 1'b0;
@@ -149,7 +150,7 @@ module regfile_tb();
         data_in = 16'd22; 
         writenum = 3'd5; 
         readnum = 3'd5; 
-        #5 
+        #10
         my_checker(16'd1100); //output should keep the inital data_in value from above test stored in R5
 
         write = 1'b1;
@@ -159,7 +160,7 @@ module regfile_tb();
         data_in = 16'd3333; 
         writenum = 3'd6; 
         readnum = 3'd6; 
-        #5 
+        #10
         my_checker(16'd3333); //output should match data_in stored in R6
 
         write = 1'b0;
@@ -169,7 +170,7 @@ module regfile_tb();
         data_in = 16'd567; 
         writenum = 3'd6; 
         readnum = 3'd6; 
-        #5 
+        #10
         my_checker(16'd3333); //output should keep the inital data_in value from above test stored in R6
 
         write = 1'b1;
@@ -179,7 +180,7 @@ module regfile_tb();
         data_in = 16'd5; 
         writenum = 3'd7; 
         readnum = 3'd7; 
-        #5 
+        #10
         my_checker(16'd5); //output should match data_in stored in R7
 
         write = 1'b0;
@@ -189,7 +190,7 @@ module regfile_tb();
         data_in = 16'd1; 
         writenum = 3'd7; 
         readnum = 3'd7; 
-        #5 
+        #10
         my_checker(16'd5); //output should keep the inital data_in value from above test stored in R7
 
         //if pass all checks, error keeps value of 0 and displays passed otherwise failed displays. 

@@ -1,5 +1,5 @@
 module datapath_tb();
-    reg [15:0] datapath_in,
+    reg [15:0] datapath_in;
     reg [2:0] writenum, readnum;   
     reg vsel, write, clk, loada, loadb, loadc, loads, asel, bsel;
     reg [1:0] shift, ALUop; 
@@ -119,7 +119,7 @@ module datapath_tb();
     write = 1;
     writenum = 3'd1; //want to write into register 1
     #10
-    if(dut.data_out !== 16'2) begin // if data_out == data_in
+    if(dut.data_out !== 16'd2) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 2", dut.data_out);
         err = 1;
     end
@@ -218,7 +218,7 @@ module datapath_tb();
     write = 1;
     writenum = 3'd5; //want to write into register 5
     #10
-    if(dut.data_out !== 16'6) begin // if data_out == data_in
+    if(dut.data_out !== 16'd6) begin // if data_out == data_in
         $display("ERROR! Output is %d. Expected: 2", dut.data_out);
         err = 1;
     end
@@ -303,4 +303,4 @@ module datapath_tb();
         err = 1;
     end
     end 
-endmodule: datapath_tb
+endmodule

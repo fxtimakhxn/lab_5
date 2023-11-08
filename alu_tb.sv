@@ -1,11 +1,11 @@
-module alu_tb();
+module ALU_tb();
     reg [15:0] Ain, Bin;
     reg [1:0] ALUop;
     wire [15:0] out;
     wire Z;
     reg err;
 
-    ALU dut(Ain,Bin,ALUop,out,Z); // instantiate an instance of alu
+    ALU DUT(Ain,Bin,ALUop,out,Z); // instantiate an instance of alu
 
     task my_checker;
         input [15:0] expected_output;
@@ -14,9 +14,6 @@ module alu_tb();
         begin
             if (out !== expected_output) begin
                 $display("ERROR output is %b, expected %b", out, expected_output);
-            end
-            if (ALUop !== expected_op) begin
-                $display("ERROR! ALUop is %b, expected: %b", ALUop, expected_op);
             end
             if( Z !== expected_z) begin
                 $display("ERROR! Z is %b, expected: %b", Z, expected_z);

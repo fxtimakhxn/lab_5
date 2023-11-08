@@ -5,15 +5,14 @@ module regfile_tb();
     wire [15:0] data_out; 
     reg err; 
 
-    regfile dut(data_in,writenum,write,readnum,clk,data_out);
+    regfile DUT(data_in,writenum,write,readnum,clk,data_out);
 
     task my_checker;
         input [15:0] expected_data_out; 
         begin 
-            if(dut.data_out !== expected_data_out) begin 
-                $display("ERRORR ** output is %b, expected %b", dut.data_out, expected_data_out);
+            if(data_out !== expected_data_out);
+                $display("ERRORR ** output is %b, expected %b", data_out, expected_data_out);
                 err = 1'b1; 
-        end 
         end 
     endtask;
 

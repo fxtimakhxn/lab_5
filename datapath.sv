@@ -6,6 +6,9 @@ module datapath(datapath_in,vsel,writenum,write,readnum,clk,loada,loadb,shift,as
     output Z_out; 
     output [15:0] datapath_out;
 
+    wire Z;
+    wire [15:0] data_in, Ain, Bin, data_out, in, sout, out;
+
     wire [15:0] out_a; 
 
     //instantatious of register file, shifter and ALU 
@@ -22,6 +25,6 @@ module datapath(datapath_in,vsel,writenum,write,readnum,clk,loada,loadb,shift,as
     vDFFE A (clk, loada, data_out, out_a); //load enable for register A 
     vDFFE B (clk, loadb, data_out, in); //load enable for register B 
     vDFFE C (clk, loadc, out, datapath_out); //load enable for register C 
-    vDFFE status (clk, loads, Z, Z_out); //load enable for status
+    vDFFE #1 status (clk, loads, Z, Z_out); //load enable for status
 
 endmodule

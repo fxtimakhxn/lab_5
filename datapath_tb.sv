@@ -37,8 +37,8 @@ module datapath_tb();
     readnum = 3'd1;
 
     #10 
-    loada = 1; 
-    #10
+        loada = 1; 
+#10
     loada = 0; //completed load A
 
     asel = 0;
@@ -60,8 +60,8 @@ module datapath_tb();
 
     bsel = 0; 
     #10
-    ALUop = 2'b00; //addition
-    #10
+        ALUop = 2'b00; //addition
+#10
     loadc = 1; //store output of ALU (16) into C 
 
     loads = 1; //status stores the value of Z from ALU 
@@ -81,7 +81,7 @@ module datapath_tb();
         $display("ERROR! Output is %b. Expected: 0", Z_out);
         err = 1;
     end
-
+    #500
     $stop;
     end
 endmodule

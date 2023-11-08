@@ -1,0 +1,58 @@
+shifter.sv:
+Yonji: 1-13
+Fatima: 12-25
+
+Total Lines: 25
+
+shifter_tb.sv:
+Yonji: 1-59
+Fatima: 60 - 108
+
+Total Lines: 108
+
+alu.sv:
+Yonji: 8-27
+Fatima: 1-7
+
+Total Lines: 27
+
+alu_tb.sv:
+Yonji: 70-145
+Fatima: 1-69
+
+Total Lines: 145
+
+regfile.sv: 
+Yonji:
+33-81
+Fatima:
+1-32 
+43-54
+
+Total Lines: 81
+
+regfile_tb.sv: 
+Yonji: 
+1-100
+Fatima: 
+101-200
+
+Total Lines: 200
+
+datapath.sv: 
+Yonji: 1-12
+Fatima: 13-30
+
+Total Lines: 30
+
+datapath_tb.sv: 
+Yonji: 
+1-55
+Fatima: 
+56-87
+
+Total Lines: 87
+
+Total Lines Written: 703
+Yonji Total: 381
+Fatima TotaL: 322
